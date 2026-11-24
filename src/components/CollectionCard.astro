@@ -1,0 +1,81 @@
+---
+import { Image } from "astro:assets";
+import type { Collection } from "../data/site";
+import { photo } from "../lib/photos";
+
+interface Props {
+  collection: Collection;
+  index: number;
+  eager?: boolean;
+}
+const { collection: c, index, eager = false } = Astro.props;
+const cover = photo(c.cover);
+const coverAlt = c.photos.find((p) => p.file === c.cover)?.alt ?? c.title;
+---
+
+<a class="card" href={`/work/${c.slug}/`}>
+  <div class="media">
+    <Image src={cover} alt={coverAlt} widths={[480, 800, 1200]} sizes="(max-width: 720px) 100vw, 50vw" format="webp" loading={eager ? "eager" : "lazy"} />
+  </div>
+  <div class="meta">
+    <span class="num">{String(index + 1).padStart(2, "0")}</span>
+    <h3>{c.title}</h3>
+    <span class="info">{c.photos.length} photographs, {c.year}</span>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: block;
+    text-decoration: none;
+  }
+  .media {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--line);
+  }
+  .media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  .card:hover img {
+    transform: scale(1.03);
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1rem;
+  }
+  .num {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  h3 {
+    margin: 0;
+    font-size: clamp(1.7rem, 3vw, 2.3rem);
+  }
+  .card:hover h3 {
+    font-style: italic;
+  }
+  .info {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: right;
+  }
+  @media (max-width: 420px) {
+    .meta {
+      grid-template-columns: auto 1fr;
+    }
+    .info {
+      grid-column: 2;
+      text-align: left;
+    }
+  }
+</style>

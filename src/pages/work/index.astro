@@ -1,0 +1,49 @@
+---
+import Base from "../../layouts/Base.astro";
+import CollectionCard from "../../components/CollectionCard.astro";
+import { collections, site } from "../../data/site";
+---
+
+<Base title="Work" description={`Photography collections by ${site.name}: ${collections.map((c) => c.title).join(", ")}.`}>
+  <section class="section">
+    <div class="wrap">
+      <span class="label">Collections</span>
+      <h1>Work</h1>
+      <p class="lede">Ongoing series and finished bodies of work. Choose a collection to see it full size.</p>
+      <ul class="cards">
+        {
+          collections.map((c, i) => (
+            <li>
+              <CollectionCard collection={c} index={i} eager={i < 2} />
+              <p class="summary">{c.summary}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+  .cards {
+    list-style: none;
+    margin: clamp(40px, 6vw, 72px) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(40px, 6vw, 72px) clamp(16px, 3vw, 32px);
+  }
+  .summary {
+    margin-top: 1rem;
+    color: var(--muted);
+    max-width: 48ch;
+  }
+  @media (max-width: 720px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

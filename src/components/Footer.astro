@@ -1,0 +1,89 @@
+---
+import { site } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap top">
+    <p class="big">Have something in mind? <a href="/book/">Let's talk.</a></p>
+    <div class="cols">
+      <div>
+        <span class="label">Contact</span>
+        <a href={`mailto:${site.email}`}>{site.email}</a><br />
+        <a href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}>{site.phone}</a>
+      </div>
+      <div>
+        <span class="label">Elsewhere</span>
+        <ul>
+          {site.social.map((s) => <li><a href={s.url}>{s.label}</a></li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <p>&copy; {year} {site.name}. All photographs are the property of the photographer.</p>
+    <p>{site.location}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding-block: clamp(56px, 8vw, 96px) 28px;
+  }
+  .top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2.5rem;
+    align-items: end;
+  }
+  .big {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    line-height: 1.05;
+    margin: 0;
+  }
+  .big a {
+    font-style: italic;
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    font-size: 0.95rem;
+  }
+  .cols a {
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  .cols a:hover {
+    text-decoration: underline;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    margin-top: 64px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .legal p {
+    margin: 0;
+  }
+  @media (max-width: 760px) {
+    .top {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 440px) {
+    .cols {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

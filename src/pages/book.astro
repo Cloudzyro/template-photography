@@ -1,0 +1,45 @@
+---
+import Base from "../layouts/Base.astro";
+import BookingForm from "../components/BookingForm.astro";
+import { booking, site } from "../data/site";
+---
+
+<Base title="Book a session" description={`Send ${site.name} a booking inquiry for portraits, editorial or interiors photography.`}>
+  <section class="section">
+    <div class="wrap grid">
+      <div>
+        <span class="label">Inquiries</span>
+        <h1>{booking.title}</h1>
+        <p class="lede">{booking.text}</p>
+        <p class="direct">
+          Or write directly:<br />
+          <a href={`mailto:${site.email}`}>{site.email}</a><br />
+          <a href={`tel:${site.phone.replace(/[^\d+]/g, "")}`}>{site.phone}</a>
+        </p>
+      </div>
+      <BookingForm />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: clamp(40px, 7vw, 112px);
+    align-items: start;
+  }
+  h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+  }
+  .direct {
+    margin-top: 2.5rem;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
