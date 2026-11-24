@@ -81,12 +81,11 @@ const isCurrent = (href: string) => path === href || (href !== "/" && path.start
   }
   .nav a {
     text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 0.95rem;
+    font-weight: 400;
     color: var(--muted);
     padding: 0.5rem 0;
+    transition: color 0.16s var(--ease);
   }
   .nav a:hover,
   .nav a[aria-current="page"] {
@@ -101,10 +100,8 @@ const isCurrent = (href: string) => path === href || (href !== "/" && path.start
     border: 0;
     color: var(--ink);
     font: inherit;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 0.95rem;
+    font-weight: 500;
     cursor: pointer;
   }
   @media (max-width: 720px) {

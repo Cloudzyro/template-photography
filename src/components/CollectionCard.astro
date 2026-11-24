@@ -18,7 +18,7 @@ const coverAlt = c.photos.find((p) => p.file === c.cover)?.alt ?? c.title;
     <Image src={cover} alt={coverAlt} widths={[480, 800, 1200]} sizes="(max-width: 720px) 100vw, 50vw" format="webp" loading={eager ? "eager" : "lazy"} />
   </div>
   <div class="meta">
-    <span class="num">{String(index + 1).padStart(2, "0")}</span>
+    <span class="num">{index + 1}</span>
     <h3>{c.title}</h3>
     <span class="info">{c.photos.length} photographs, {c.year}</span>
   </div>
@@ -38,10 +38,10 @@ const coverAlt = c.photos.find((p) => p.file === c.cover)?.alt ?? c.title;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s ease;
+    transition: opacity 0.3s var(--ease);
   }
   .card:hover img {
-    transform: scale(1.03);
+    opacity: 0.88;
   }
   .meta {
     display: grid;
@@ -62,7 +62,9 @@ const coverAlt = c.photos.find((p) => p.file === c.cover)?.alt ?? c.title;
     font-size: clamp(1.7rem, 3vw, 2.3rem);
   }
   .card:hover h3 {
-    font-style: italic;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
   }
   .info {
     font-size: 0.85rem;

@@ -17,7 +17,7 @@ export const site = {
 };
 
 export const home = {
-  intro: "Quiet pictures of light, land and the people in it.",
+  intro: "Quiet pictures of light, land and the people in it",
   text: "I make photographs for magazines, brands and families who want images that feel calm, honest and a little unhurried.",
   // The collection shown full-bleed at the top of the home page.
   heroPhoto: "coast-1.jpg",

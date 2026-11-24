@@ -13,7 +13,7 @@ import { photo } from "../lib/photos";
       </div>
       <div class="text">
         <span class="label">About</span>
-        <h1>Hello, I'm <em>{site.name.split(" ")[0]}</em>.</h1>
+        <h1>{site.name}</h1>
         {about.paragraphs.map((p, i) => <p class={i === 0 ? "lede" : undefined}>{p}</p>)}
         <h2 class="clients-title">Selected clients</h2>
         <ul class="clients">
@@ -53,10 +53,8 @@ import { photo } from "../lib/photos";
   }
   .clients-title {
     font-family: var(--font-body);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    font-size: 0.95rem;
+    font-weight: 500;
     color: var(--muted);
     margin-top: 3rem;
   }

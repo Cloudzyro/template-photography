@@ -17,6 +17,7 @@
   --wrap: 1240px;
   --gutter: clamp(16px, 4vw, 48px);
   --gap: 8px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -82,7 +83,7 @@ h3 {
 }
 
 em {
-  font-style: italic;
+  font-style: normal;
 }
 
 p {
@@ -111,12 +112,10 @@ a {
 
 .label {
   display: block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 0.95rem;
+  font-weight: 500;
   color: var(--muted);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .lede {
@@ -134,17 +133,15 @@ a {
   border: 1px solid var(--ink);
   border-radius: 0;
   font: inherit;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
   text-decoration: none;
   cursor: pointer;
   background: transparent;
   color: var(--ink);
   transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+    background-color 0.16s var(--ease),
+    color 0.16s var(--ease);
 }
 
 .btn:hover,
